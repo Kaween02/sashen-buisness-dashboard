@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { db, pool } from '../src/db';
+import { db } from '../src/db';
 import { users, orders, inventory, expenses, shipping } from '../src/db/schema';
 import { hashPassword } from '../src/lib/auth';
 
@@ -157,7 +157,7 @@ async function seed() {
     console.error('❌ Error seeding database:', error);
     throw error;
   } finally {
-    await pool.end();
+    await db.$client.end();
   }
 }
 
